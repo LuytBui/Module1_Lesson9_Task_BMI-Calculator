@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tính chỉ số cơ thể BMI</title>
+</head>
+<body>
+Enter weight (kG):<input type="number" id="weight"><br>
+Enter height (cm):<input type="number" id="height"><br>
+<input type="button" id="calculate" value="Calculate"><br>
+<p id="BMI-c"></p>
+<p id="conclusion"></p>
+
+<script>
+    document.getElementById('calculate').addEventListener('click',calculate);
+
+    function calculate(){
+        let weight = parseFloat(document.getElementById('weight').value);
+        let height = parseFloat(document.getElementById('height').value);
+        let conclusion;
+        //convert height from centimeters to meters
+        height = height / 100;
+        let BMI = weight / (height * height);
+
+        if (BMI < 18.5) {
+                conclusion = 'Underweight';
+        } else if (BMI <25){
+            conclusion = 'Normal';
+        }else if (BMI <30){
+            conclusion = 'Overweight';
+        } else {
+            conclusion = 'Obese';
+        }
+
+        document.getElementById('BMI-c').innerHTML = 'BMI: '+ BMI.toFixed(2);
+        document.getElementById('conclusion').innerHTML = 'Conclusion: '+ conclusion;
+    }
+</script>
+
+</body>
+</html>
